@@ -43,13 +43,12 @@ class TestRestApi():
 
   
   
-  #def getProtectionDomainSchedule(self):
-    #pp = pprint.PrettyPrinter(indent=2)
-    #clusterURL = self.base_url + "/protection_domains/testPD/schedules"
-    #print("Getting protection domain schedules for testProtectionDomain:")
-    #serverResponse = self.session.get(clusterURL)
-    #print("Response code: %s" % serverResponse.status_code)
-    #return serverResponse.status_code, json.loads(serverResponse.text)
+  def getProtectionDomainSchedule(self):
+    clusterURL = self.base_url + "/protection_domains/testPD/schedules"
+    print("Getting protection domain schedules for testProtectionDomain:")
+    serverResponse = self.session.get(clusterURL)
+    print("Response code: %s" % serverResponse.status_code)
+    return serverResponse.status_code, json.loads(serverResponse.text)
 
 
   #Creates a protection domain with assigned name.
@@ -163,10 +162,10 @@ if __name__ == "__main__":
     print(("=" * 79))
 
     #Get the protection domain schedule
-    #schedules = testRestApi.getProtectionDomainSchedule()
-    #print("Text: ")
-    #pp.pprint(schedules)
-    #print(("=" * 79))
+    schedules = testRestApi.getProtectionDomainSchedule()
+    print("Text: ")
+    pp.pprint(schedules)
+    print(("=" * 79))
 
     #Create a Protection Domain
     protection_domain = testRestApi.createProtectionDomain()
