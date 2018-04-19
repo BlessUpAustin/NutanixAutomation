@@ -44,8 +44,8 @@ class TestRestApi():
 
   #Delete the local snapshots
   def PDSnapshotCleanup(self):
-    PDSnapshotURL = self.base_url + "/protection_domains/testPD/dr_snapshots/320"
-    print("Deleting local snapshot with ID 320.")
+    PDSnapshotURL = self.base_url + "/protection_domains/testPD/dr_snapshots/423"
+    print("Deleting local snapshot with ID 423.")
     serverResponse = self.session.delete(PDSnapshotURL)
     print("Response code: %s" % serverResponse.status_code)
 
@@ -68,9 +68,11 @@ if __name__ == "__main__":
       print("Version: %s" % cluster.get('version'))
       print("Hypervisor Types: %s" % cluster.get('hypervisorTypes'))
       print(("=" * 79))
+      print(("=" * 79))
+      print(("=" * 79))
 
       #Delete protection domain snapshot
-      deletePDSnapshot = testRestApi.PDSnapshotCleanup
+      deletePDSnapshot = testRestApi.PDSnapshotCleanup()
       print ("Text: ")
       pp.pprint(deletePDSnapshot)
       print(("=" * 79))
