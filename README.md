@@ -1,1 +1,1 @@
-"# NutanixAutomation" 
+This project aims to automate as much of post-network configuration as possible using the Nutanix's API.
