@@ -56,7 +56,7 @@ class TestRestApi():
         print ("Creating a remote site on cluster %s " % self.serverIpAddress)
         payload = {}
         payload["name"] = "testRemoteSite"
-        payload["remote_ip_ports"] = {"10.1.11.68": "2020"}
+        payload["remote_ip_ports"] = {"10.1.11.69": "80"}
         payload["capabilities"] = ["BACKUP"]
         
         #The next payload line, which creates the vstore name mapping, 

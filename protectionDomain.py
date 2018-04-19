@@ -41,16 +41,6 @@ class TestRestApi():
     print("Response code: %s" % serverResponse.status_code)
     return serverResponse.status_code, json.loads(serverResponse.text)
 
-  
-  
-  def getProtectionDomainSchedule(self):
-    clusterURL = self.base_url + "/protection_domains/testPD/schedules"
-    print("Getting protection domain schedules for testProtectionDomain:")
-    serverResponse = self.session.get(clusterURL)
-    print("Response code: %s" % serverResponse.status_code)
-    return serverResponse.status_code, json.loads(serverResponse.text)
-
-
   #Creates a protection domain with assigned name.
 
   def createProtectionDomain(self):
@@ -82,14 +72,21 @@ class TestRestApi():
     payload["everyNth"] = "30"
     payload["pdName"] = "testPD"
     payload["retentionPolicy"] = {"localMaxSnapshots": "1", "remoteMaxSnapshots": {}}
-    payload["startTimeInUsecs"] = ["1523916720000000"]
+    payload["startTimesInUsecs"] = ["1524174840000000"]
     payload["suspended"] = False
-    payload["userStartTimeInUsecs"] = "1523916720000000"
+    payload["userStartTimeInUsecs"] = "1524174840000000"
     payload["type"] = "DAILY"
     payloadInJson = json.dumps(payload)
     serverResponse = self.session.post(clusterURL, data=payloadInJson)
     print("Response code: %s" % serverResponse.status_code)
     return json.loads(serverResponse.text)
+
+  def getProtectionDomainSchedule(self):
+    clusterURL = self.base_url + "/protection_domains/testPD/schedules"
+    print("Getting protection domain schedules for testProtectionDomain:")
+    serverResponse = self.session.get(clusterURL)
+    print("Response code: %s" % serverResponse.status_code)
+    return serverResponse.status_code, json.loads(serverResponse.text)
 
   #Get the list of snapshots in a protection domain
   def getSnapshots(self):
@@ -107,20 +104,21 @@ class TestRestApi():
     print("Response code: %s" % serverResponse.status_code)
     return json.loads(serverResponse.text)
     
-  def addVMtoPD(self):
-    addVMtoPDURL = self.base_url + "/protection_domains/testPD/protect_vms/"  
-    print("Added unprotected VMs to a Protection Domain on cluster %s" % self.serverIpAddress)
-    payload = {}
-    vms = testRestApi.getUnprotectedVMs()
-    vmNames = []
-   #Designate the name for the unprotected VM.
-    for vm in vms:
-        vmNames.append(vm["vm_name"])					
-    payload["names"] = vmNames
-    payloadInJson = json.dumps(payload)
-    serverResponse = self.session.post(addVMtoPDURL, data=payloadInJson)
-    print("Response code: %s" % serverResponse.status_code)
-    return json.loads(serverResponse.text)
+  # Uncomment the below function if you wish to add all unprotected VMs  
+  #def addVMtoPD(self):
+    #addVMtoPDURL = self.base_url + "/protection_domains/testPD/protect_vms/"  
+    #print("Added unprotected VMs to a Protection Domain on cluster %s" % self.serverIpAddress)
+    #payload = {}
+    #vms = testRestApi.getUnprotectedVMs()
+    #vmNames = []
+   ##Designate the name for the unprotected VM.
+    #for vm in vms:
+    #    vmNames.append(vm["vm_id"])					
+    #payload["names"] = vmNames
+    #payloadInJson = json.dumps(payload)
+    #serverResponse = self.session.post(addVMtoPDURL, data=payloadInJson)
+    #print("Response code: %s" % serverResponse.status_code)
+    #return json.loads(serverResponse.text)
    
   #Add a specific VM to a protection domain. 
   def specificVMtoPD(self):
@@ -146,11 +144,11 @@ if __name__ == "__main__":
     status, cluster = testRestApi.getClusterInformation()
     print(("=" * 79))
     
-    #Displays cluster authentication response and information.
-    print("Status code: %s" % status)
-    print("Text: ") # %s" % cluster
-    pp.pprint(cluster)
-    print(("=" * 79))
+    #Uncomment to display cluster authentication response and information.
+    #print("Status code: %s" % status)
+    #print("Text: ") # %s" % cluster
+    #pp.pprint(cluster)
+    #print(("=" * 79))
     
     #Get specific cluster elements.
     print("Name: %s" % cluster.get('name'))
@@ -160,11 +158,7 @@ if __name__ == "__main__":
     print("Version: %s" % cluster.get('version'))
     print("Hypervisor Types: %s" % cluster.get('hypervisorTypes'))
     print(("=" * 79))
-
-    #Get the protection domain schedule
-    schedules = testRestApi.getProtectionDomainSchedule()
-    print("Text: ")
-    pp.pprint(schedules)
+    print(("=" * 79))
     print(("=" * 79))
 
     #Create a Protection Domain
@@ -172,11 +166,21 @@ if __name__ == "__main__":
     print("Text: ")
     pp.pprint(protection_domain)
     print(("=" * 79))
+    print(("=" * 79))
+    print(("=" * 79))
 
     #Create a replication schedule for the Protection Domain
     newSchedule = testRestApi.createPDSchedule()
     print("Text: ")
     pp.pprint(newSchedule)
+    print(("=" * 79))
+    print(("=" * 79))
+    print(("=" * 79))
+
+    #Get the protection domain schedule
+    schedules = testRestApi.getProtectionDomainSchedule()
+    print("Text: ")
+    pp.pprint(schedules)
     print(("=" * 79))
     print(("=" * 79))
     print(("=" * 79))
@@ -197,12 +201,12 @@ if __name__ == "__main__":
     print(("=" * 79))
     print(("=" * 79))
 
-    
+    # Uncomment the below block if you wish to add all VMs to the protection domain.
     #Add the list of uprotected VMs to a protection domain.
-    added_vms = testRestApi.addVMtoPD()
-    print("Text: ")
-    pp.pprint(added_vms)
-    print(("=" * 79))
+    #added_vms = testRestApi.addVMtoPD()
+    #print("Text: ")
+    #pp.pprint(added_vms)
+    #print(("=" * 79))
     
     #Add specific VM(s) to a protection domain.
     specific_vm = testRestApi.specificVMtoPD()
