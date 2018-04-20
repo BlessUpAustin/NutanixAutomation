@@ -24,8 +24,9 @@ class TestRestApi():
 
   def get_server_session(self, username, password):
     
-    #Creating REST client session for server connection, after globally setting
-    #Authorization, content type, and character set for the session.
+    #Creating REST client session for server connection, after 
+    #globally setting authorization, content type, and character
+    #set for the session.
     session = requests.Session()
     session.auth = (username, password)
     session.verify = False
