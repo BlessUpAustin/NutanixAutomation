@@ -158,7 +158,6 @@ if __name__ == "__main__":
     print("Cluster External IP Address: %s" % cluster.get('clusterExternalIPAddress'))
     print("Number of Nodes: %s" % cluster.get('numNodes'))
     print("Version: %s" % cluster.get('version'))
-    print("Hypervisor Types: %s" % cluster.get('hypervisorTypes'))
     print(("=" * 79))
     print(("=" * 79))
     print(("=" * 79))
@@ -218,6 +217,8 @@ if __name__ == "__main__":
     
     print(("*" * 79))
     
+    print("FINISHED")
+
   except Exception as ex:
     print(ex)
     sys.exit(1)
