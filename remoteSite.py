@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+#Created by Austin Jones
+#This script creates a link to a remote site for a Nutanix server
 
 import pprint
 import json

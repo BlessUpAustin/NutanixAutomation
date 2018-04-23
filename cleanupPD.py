@@ -51,7 +51,6 @@ class TestRestApi():
     print ("Deleting a protection domain on cluster %s " % self.serverIpAddress)
     serverResponse = self.session.delete(protectionDomainURL)
     print ("Response code: %s" % serverResponse.status_code)
-    return json.loads(serverResponse.text)
 
 if __name__ == "__main__":
 

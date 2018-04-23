@@ -44,8 +44,8 @@ class TestRestApi():
 
   #Delete the local snapshots
   def PDSnapshotCleanup(self):
-    PDSnapshotURL = self.base_url + "/protection_domains/testPD/dr_snapshots/423"
-    print("Deleting local snapshot with ID 423.")
+    PDSnapshotURL = self.base_url + "/protection_domains/testPD/dr_snapshots/594"
+    print("Deleting local snapshot with ID 594.")
     serverResponse = self.session.delete(PDSnapshotURL)
     print("Response code: %s" % serverResponse.status_code)
 
