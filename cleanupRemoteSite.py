@@ -75,7 +75,6 @@ if __name__ == "__main__":
       pp.pprint(deleteRemoteSite)
       print(("=" * 79))
       
-
     except Exception as ex:
       print (ex)
       sys.exit(1)
