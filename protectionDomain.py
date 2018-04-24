@@ -113,7 +113,7 @@ class TestRestApi():
     #payload = {}
     #vms = testRestApi.getUnprotectedVMs()
     #vmNames = []
-   ##Designate the name for the unprotected VM.
+    ##Designate the name for the unprotected VM.
     #for vm in vms:
     #    vmNames.append(vm["vm_id"])					
     #payload["names"] = vmNames
@@ -171,20 +171,20 @@ if __name__ == "__main__":
     print(("=" * 79))
 
     #Create a replication schedule for the Protection Domain
-    newSchedule = testRestApi.createPDSchedule()
-    print("Text: ")
-    pp.pprint(newSchedule)
-    print(("=" * 79))
-    print(("=" * 79))
-    print(("=" * 79))
+    #newSchedule = testRestApi.createPDSchedule()
+    #print("Text: ")
+    #pp.pprint(newSchedule)
+    #print(("=" * 79))
+    #print(("=" * 79))
+    #print(("=" * 79))
 
     #Get the protection domain schedule
-    schedules = testRestApi.getProtectionDomainSchedule()
-    print("Text: ")
-    pp.pprint(schedules)
-    print(("=" * 79))
-    print(("=" * 79))
-    print(("=" * 79))
+    #schedules = testRestApi.getProtectionDomainSchedule()
+    #print("Text: ")
+    #pp.pprint(schedules)
+    #print(("=" * 79))
+    #print(("=" * 79))
+    #print(("=" * 79))
 
     #Get the list of snapshots.
     protectionDomainSnapshots = testRestApi.getSnapshots()
